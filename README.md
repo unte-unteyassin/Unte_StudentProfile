@@ -1,7 +1,5 @@
 # Unte_StudentProfile
 
-# Unte Student Profile
-
 ## 1. Project Description
 This is my responsive Student Profile made using HTML and CSS. It contains info about myself, my education background, interests, goals/aspirations, and skills. The project was improved from Activity 2 to work better and be responsive on different screen sizes.
 
