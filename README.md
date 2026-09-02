@@ -58,3 +58,6 @@ cordova run android
 ### Mobile
 ![Mobile](screenshots/mobile.png)
 
+### CORDOVA MOBILE
+<img width="461" height="943" alt="image" src="https://github.com/user-attachments/assets/503457dc-1b17-43b6-9575-60717b22b85c" />
+
