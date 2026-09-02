@@ -5,11 +5,11 @@ This is my responsive Student Profile made using HTML and CSS. It contains info 
 
 ## 2. Application Structure
 The application contains:
-- **Header** – Profile picture, name, About Myself, and navigation.
-- **Navigation** – About and Skills links.
-- **About** – Personal information, education, interests, and goals.
-- **Skills** – Five skills with short descriptions.
-- **Footer** – Copyright, name, and year.
+- **Header** - Profile picture, name, About Myself, and navigation.
+- **Navigation** - About and Skills links.
+- **About** - Personal information, education, interests, and goals.
+- **Skills** - Five skills with short descriptions.
+- **Footer** - Copyright, name, and year.
 
 ## 3. Responsive Design
 I used CSS Grid, Flexbox, and media queries to make the layout responsive. The layout and spacing adjust depending on whether it is viewed on desktop, tablet, or mobile.
