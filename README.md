@@ -16,13 +16,13 @@ I used CSS Grid, Flexbox, and media queries to make the layout responsive. The l
 
 ## 4. UI/UX Principles Applied
 
-- **Responsive Layout** – The content adjusts to different screen sizes.
-- **Mobile-Friendly Spacing** – Spacing is reduced and adjusted on smaller screens.
-- **Appropriate Typography** – Different font sizes are used for headings and normal text.
-- **Clear Visual Hierarchy** – Important headings and information are made more noticeable.
-- **Usable Controls** – Navigation links are easy to see and click.
-- **Basic Accessibility** – The profile image has alternative text and the text has readable contrast.
-- **Consistent Design** – The same colors, fonts, spacing, and style are used throughout the page.
+- **Responsive Layout** - The content adjusts to different screen sizes.
+- **Mobile-Friendly Spacing** - Spacing is reduced and adjusted on smaller screens.
+- **Appropriate Typography** - Different font sizes are used for headings and normal text.
+- **Clear Visual Hierarchy** - Important headings and information are made more noticeable.
+- **Usable Controls** - Navigation links are easy to see and click.
+- **Basic Accessibility** - The profile image has alternative text and the text has readable contrast.
+- **Consistent Design** - The same colors, fonts, spacing, and style are used throughout the page.
 
 ## 5. Navigation
 The About and Skills links use HTML anchor links to navigate to their sections on the same page.
