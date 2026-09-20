@@ -1,63 +1,166 @@
 # Unte_StudentProfile
 
 ## 1. Project Description
-This is my responsive Student Profile made using HTML and CSS. It contains info about myself, my education background, interests, goals/aspirations, and skills. The project was improved from Activity 2 to work better and be responsive on different screen sizes.
 
-## 2. Application Structure
-The application contains:
-- **Header** - Profile picture, name, About Myself, and navigation.
-- **Navigation** - About and Skills links.
-- **About** - Personal information, education, interests, and goals.
-- **Skills** - Five skills with short descriptions.
-- **Footer** - Copyright, name, and year.
+This is my multi-page Student Profile application created using HTML, CSS, and Apache Cordova
 
-## 3. Responsive Design
-I used CSS Grid, Flexbox, and media queries to make the layout responsive. The layout and spacing adjust depending on whether it is viewed on desktop, tablet, or mobile.
+The application was extended from my previous responsive Student Profile and now contains separate pages for my profile, background, skills, projects, and contact information
 
-## 4. UI/UX Principles Applied
+---
 
-- **Responsive Layout** - The content adjusts to different screen sizes.
-- **Mobile-Friendly Spacing** - Spacing is reduced and adjusted on smaller screens.
-- **Appropriate Typography** - Different font sizes are used for headings and normal text.
-- **Clear Visual Hierarchy** - Important headings and information are made more noticeable.
-- **Usable Controls** - Navigation links are easy to see and click.
-- **Basic Accessibility** - The profile image has alternative text and the text has readable contrast.
-- **Consistent Design** - The same colors, fonts, spacing, and style are used throughout the page.
+## 2. Application Pages
 
-## 5. Navigation
-The About and Skills links use HTML anchor links to navigate to their sections on the same page.
+### Profile
+
+The Profile page serves as the homepage of the application
+
+It contains my profile picture, name, short introduction, and links to the other pages
+
+### About
+
+The About page contains information about my background, education, interests, goals, and aspirations
+
+### Skills
+
+The Skills page contains the skills I have developed as an Information Technology student
+
+Each skill includes a short description
+
+### Projects
+
+The Projects page showcases some projects I have worked on
+
+The projects include:
+
+* Infinity Duel
+* Palette Lab
+* Pixabay Image Search
+
+Each project includes a short description, my role or contribution, technologies used, and a project link
+
+### Contact
+
+The Contact page contains my email address, GitHub profile, university information, and program
+
+It also includes a contact form layout
+
+---
+
+## 3. Navigation
+
+The application uses standard HTML links to navigate between the different pages
+
+The navigation menu provides access to:
+
+* Profile
+* About
+* Skills
+* Projects
+* Contact
+
+The same navigation menu is available on every page so users can easily move between sections and return to the homepage
+
+JavaScript is not used for page navigation
+
+---
+
+## 4. Responsive Design
+
+The application uses CSS Grid, Flexbox, responsive units, and media queries to support different screen sizes
+
+The layout is designed to work properly on:
+
+* Desktop
+* Tablet
+* Mobile
+
+The responsive design helps prevent horizontal scrolling, overlapping elements, distorted images, and cut-off text
+
+---
+
+## 5. UI/UX Principles Applied
+
+### Consistency
+
+All pages use the same color scheme, typography, navigation, spacing, and visual style
+
+### Visual Hierarchy
+
+Large headings, section numbers, spacing, and typography are used to separate important information from supporting content
+
+### Usability
+
+The navigation menu remains available on every page and the current page is visually indicated
+
+### Readability
+
+Text sizes, spacing, and content widths are adjusted to remain readable across different screen sizes
+
+### Accessibility
+
+The application uses meaningful headings, readable color contrast, alternative text for images, clear navigation links, form labels, and visible interactive elements
+
+---
 
 ## 6. How to Run
 
-Install the dependencies:
+Install the project dependencies:
 
 ```bash
 npm install
 ```
 
-Build the android project:
+Check the Cordova requirements:
+
+```bash
+cordova requirements
+```
+
+Build the Android project:
 
 ```bash
 cordova build android
 ```
 
-Run it on an android studio/emulator or connected Android device:
+Run the application using an Android emulator or connected Android device:
 
 ```bash
 cordova run android
 ```
 
+---
+
 ## 7. Application Screenshots
 
-### Desktop
-![Desktop](screenshots/desktop.png)
+### Profile
 
-### Tablet
-![Tablet](screenshots/tablet.png)
+![Profile](screenshots/profile.png)
 
-### Mobile
-![Mobile](screenshots/mobile.png)
+### About
 
-### CORDOVA MOBILE
-<img width="461" height="943" alt="image" src="https://github.com/user-attachments/assets/503457dc-1b17-43b6-9575-60717b22b85c" />
+![About](screenshots/about.png)
 
+### Skills
+
+![Skills](screenshots/skills.png)
+
+### Projects
+
+![Projects](screenshots/projects.png)
+
+### Contact
+
+![Contact](screenshots/contact.png)
+
+---
+
+## Developer
+
+**Yassin L. Unte**
+
+Bachelor of Science in Information Technology
+Xavier University - Ateneo de Cagayan
+
+Email: [20240031241@my.xu.edu.ph](mailto:20240031241@my.xu.edu.ph)
+
+GitHub: https://github.com/unte-unteyassin
