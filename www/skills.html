@@ -14,8 +14,8 @@
 
     <header class="site-header">
 
-        <a href="index.html" class="site-logo">
-            Yogurt
+        <a href="index.html" class="site-logo" data-profile="fullName">
+            Yassin L. Unte
         </a>
 
         <nav class="navigation" aria-label="Main navigation">
@@ -36,7 +36,7 @@
             <div class="section-heading">
 
                 <p class="section-number">
-                    02
+                    03
                 </p>
 
                 <h1 class="page-title">
@@ -46,116 +46,10 @@
             </div>
 
 
-            <div class="skills-grid">
-
-                <article class="skill-card">
-
-                    <span class="skill-number">
-                        01
-                    </span>
-
-                    <h2>
-                        Programming
-                    </h2>
-
-                    <p>
-                        Familiar with Python, Java,
-                        and basic programming concepts.
-                    </p>
-
-                </article>
-
-
-                <article class="skill-card">
-
-                    <span class="skill-number">
-                        02
-                    </span>
-
-                    <h2>
-                        Microsoft Office
-                    </h2>
-
-                    <p>
-                        Comfortable using Word and Excel
-                        for schoolwork and data organization.
-                    </p>
-
-                </article>
-
-
-                <article class="skill-card">
-
-                    <span class="skill-number">
-                        03
-                    </span>
-
-                    <h2>
-                        UI/UX Design
-                    </h2>
-
-                    <p>
-                        Basic experience with Figma,
-                        layouts, spacing, and interface design.
-                    </p>
-
-                </article>
-
-
-                <article class="skill-card">
-
-                    <span class="skill-number">
-                        04
-                    </span>
-
-                    <h2>
-                        Communication & Teamwork
-                    </h2>
-
-                    <p>
-                        Able to communicate ideas and
-                        work effectively with a team.
-                    </p>
-
-                </article>
-
-
-                <article class="skill-card">
-
-                    <span class="skill-number">
-                        05
-                    </span>
-
-                    <h2>
-                        Troubleshooting
-                    </h2>
-
-                    <p>
-                        Able to solve basic computer
-                        and software problems.
-                    </p>
-
-                </article>
-
-
-                <article class="skill-card">
-
-                    <span class="skill-number">
-                        06
-                    </span>
-
-                    <h2>
-                        Web Development
-                    </h2>
-
-                    <p>
-                        Building responsive web pages
-                        using HTML and CSS.
-                    </p>
-
-                </article>
-
-            </div>
+            <div
+                class="skills-grid"
+                data-profile-skill-cards
+            ></div>
 
         </section>
 
@@ -165,10 +59,16 @@
     <footer class="footer">
 
         <p>
-            &copy; 2026 Yassin L. Unte
+            &copy; 2026
+            <span data-profile="fullName">
+                Yassin L. Unte
+            </span>
         </p>
 
     </footer>
+
+
+    <script src="js/profile.js"></script>
 
 </body>
 

@@ -14,8 +14,8 @@
 
     <header class="site-header">
 
-        <a href="index.html" class="site-logo">
-            Yogurt
+        <a href="index.html" class="site-logo" data-profile="fullName">
+            Yassin L. Unte
         </a>
 
         <nav class="navigation" aria-label="Main navigation">
@@ -36,7 +36,7 @@
             <div class="section-heading">
 
                 <p class="section-number">
-                    01
+                    02
                 </p>
 
                 <h1 class="page-title">
@@ -51,21 +51,25 @@
                 <div class="about-main">
 
                     <p class="large-text">
-                        I'm a third-year Information Technology student
-                        who enjoys building projects and exploring technology.
+                        I'm
+                        <span data-profile="fullName">
+                            Yassin L. Unte
+                        </span>,
+                        currently taking
+                        <span data-profile="course">
+                            BS Information Technology
+                        </span>.
+                    </p>
+
+                    <p data-profile="aboutMe">
+                        IT student interested in technology,
+                        game development, sports, and building projects.
                     </p>
 
                     <p>
-                        I am currently taking Bachelor of Science in
-                        Information Technology at Xavier University -
-                        Ateneo de Cagayan. I enjoy programming,
-                        web development, and game development.
-                    </p>
-
-                    <p>
-                        Outside academics, I enjoy sports, gaming,
-                        working out, and improving the skills I am
-                        passionate about.
+                        Outside academics, I enjoy sports,
+                        gaming, working out, and improving
+                        the skills I am passionate about.
                     </p>
 
                 </div>
@@ -139,14 +143,21 @@
                         <div class="school-group">
 
                             <h3>
-                                University / College
+                                University
                             </h3>
 
                             <ul>
 
                                 <li>
                                     Xavier University - Ateneo de Cagayan
-                                    (Current)
+                                </li>
+
+                                <li data-profile="course">
+                                    BS Information Technology
+                                </li>
+
+                                <li data-profile="yearLevel">
+                                    3rd Year
                                 </li>
 
                             </ul>
@@ -200,10 +211,16 @@
     <footer class="footer">
 
         <p>
-            &copy; 2026 Yassin L. Unte
+            &copy; 2026
+            <span data-profile="fullName">
+                Yassin L. Unte
+            </span>
         </p>
 
     </footer>
+
+
+    <script src="js/profile.js"></script>
 
 </body>
 

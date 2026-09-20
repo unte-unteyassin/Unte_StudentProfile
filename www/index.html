@@ -14,8 +14,8 @@
 
     <header class="site-header">
 
-        <a href="index.html" class="site-logo">
-            Yogurt
+        <a href="index.html" class="site-logo" data-profile="fullName">
+            Yassin L. Unte
         </a>
 
         <nav class="navigation" aria-label="Main navigation">
@@ -31,43 +31,257 @@
 
     <main>
 
-        <section class="hero">
+        <section class="section profile-section">
 
-            <div class="hero-intro">
+            <div class="section-heading">
 
-                <p class="page-label">
-                    STUDENT PROFILE
+                <p class="section-number">
+                    01
                 </p>
 
-                <h1>
-                    Yassin L.<br>
-                    Unte
+                <h1 class="page-title">
+                    Profile
                 </h1>
-
-                <p class="hero-subtitle">
-                    BS Information Technology Student
-                </p>
-
-                <p class="hero-description">
-                    IT student interested in technology,
-                    game development, sports, and building projects.
-                </p>
-
-                <a href="about.html" class="explore-link">
-                    Explore Profile
-                    <span aria-hidden="true">→</span>
-                </a>
 
             </div>
 
 
-            <div class="hero-image-wrapper">
+            <div class="profile-layout">
 
-                <img
-                    src="images/profile.jpg"
-                    alt="Portrait of Yassin L. Unte"
-                    class="hero-image"
-                >
+                <div class="profile-content">
+
+                    <p class="page-label">
+                        STUDENT PROFILE
+                    </p>
+
+                    <h2 class="profile-name" data-profile="fullName">
+                        Yassin L. Unte
+                    </h2>
+
+                    <p class="profile-course" data-profile="course">
+                        BS Information Technology
+                    </p>
+
+                    <p class="profile-year" data-profile="yearLevel">
+                        3rd Year
+                    </p>
+
+
+                    <div class="profile-information">
+
+                        <div class="profile-info-block">
+
+                            <p class="detail-label">
+                                About Me
+                            </p>
+
+                            <p class="profile-about" data-profile="aboutMe">
+                                IT student interested in technology,
+                                game development, sports, and building projects.
+                            </p>
+
+                        </div>
+
+
+                        <div class="profile-info-block">
+
+                            <p class="detail-label">
+                                Skills
+                            </p>
+
+                            <ul
+                                class="profile-skills-list"
+                                data-profile-skills-list
+                            ></ul>
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="edit-profile-button"
+                        id="editProfileButton"
+                    >
+                        Edit Profile →
+                    </button>
+
+                </div>
+
+
+                <div class="profile-image-wrapper">
+
+                    <img
+                        src="images/profile.jpg"
+                        alt="Student profile picture"
+                        class="profile-image"
+                        data-profile-image
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="edit-profile-container hidden"
+                id="editProfileSection"
+            >
+
+                <div class="edit-profile-header">
+
+                    <p class="page-label">
+                        EDIT PROFILE
+                    </p>
+
+                    <h2>
+                        Update Information
+                    </h2>
+
+                </div>
+
+
+                <div class="edit-profile-card">
+
+                    <form id="profileForm" novalidate>
+
+                        <div class="form-group">
+
+                            <label for="profilePicture">
+                                Profile Picture
+                            </label>
+
+                            <img
+                                src="images/profile.jpg"
+                                alt="Profile picture preview"
+                                class="edit-profile-preview"
+                                id="editProfilePreview"
+                            >
+
+                            <input
+                                type="file"
+                                id="profilePicture"
+                                name="profilePicture"
+                                accept="image/jpeg,image/png,image/webp"
+                            >
+
+                            <p class="field-help">
+                                Choose a JPG, PNG, or WEBP image up to 2 MB.
+                            </p>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="fullName">
+                                Full Name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="fullName"
+                                name="fullName"
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="course">
+                                Course
+                            </label>
+
+                            <input
+                                type="text"
+                                id="course"
+                                name="course"
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="yearLevel">
+                                Year Level
+                            </label>
+
+                            <input
+                                type="text"
+                                id="yearLevel"
+                                name="yearLevel"
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="aboutMe">
+                                About Me
+                            </label>
+
+                            <textarea
+                                id="aboutMe"
+                                name="aboutMe"
+                                rows="5"
+                            ></textarea>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="skills">
+                                Skills
+                            </label>
+
+                            <textarea
+                                id="skills"
+                                name="skills"
+                                rows="4"
+                                placeholder="Programming, Web Development, UI/UX Design"
+                            ></textarea>
+
+                            <p class="field-help">
+                                Separate each skill using a comma.
+                            </p>
+
+                        </div>
+
+
+                        <p
+                            class="validation-message"
+                            id="validationMessage"
+                            role="alert"
+                        ></p>
+
+
+                        <div class="form-actions">
+
+                            <button
+                                type="submit"
+                                class="form-button"
+                            >
+                                Save
+                            </button>
+
+                            <button
+                                type="button"
+                                class="cancel-button"
+                                id="cancelButton"
+                            >
+                                Cancel
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
 
             </div>
 
@@ -76,14 +290,14 @@
 
         <section class="section home-pages">
 
-            <div class="section-heading">
+            <div class="simple-heading">
 
-                <p class="section-number">
-                    00
+                <p class="page-label">
+                    EXPLORE
                 </p>
 
                 <h2>
-                    Explore
+                    More About Me
                 </h2>
 
             </div>
@@ -94,7 +308,7 @@
                 <a href="about.html" class="page-card">
 
                     <span class="card-number">
-                        01
+                        02
                     </span>
 
                     <h3>
@@ -102,7 +316,7 @@
                     </h3>
 
                     <p>
-                        My background, interests, education, and goals.
+                        My background, education, interests, and goals.
                     </p>
 
                 </a>
@@ -111,7 +325,7 @@
                 <a href="skills.html" class="page-card">
 
                     <span class="card-number">
-                        02
+                        03
                     </span>
 
                     <h3>
@@ -119,7 +333,7 @@
                     </h3>
 
                     <p>
-                        Skills I have developed as an IT student.
+                        The skills I have developed and continue improving.
                     </p>
 
                 </a>
@@ -128,7 +342,7 @@
                 <a href="projects.html" class="page-card">
 
                     <span class="card-number">
-                        03
+                        04
                     </span>
 
                     <h3>
@@ -136,7 +350,7 @@
                     </h3>
 
                     <p>
-                        Some projects I have worked on.
+                        Projects and applications I have worked on.
                     </p>
 
                 </a>
@@ -145,7 +359,7 @@
                 <a href="contact.html" class="page-card">
 
                     <span class="card-number">
-                        04
+                        05
                     </span>
 
                     <h3>
@@ -153,7 +367,7 @@
                     </h3>
 
                     <p>
-                        My profiles and contact information.
+                        My contact information and online profile.
                     </p>
 
                 </a>
@@ -168,10 +382,16 @@
     <footer class="footer">
 
         <p>
-            &copy; 2026 Yassin L. Unte
+            &copy; 2026
+            <span data-profile="fullName">
+                Yassin L. Unte
+            </span>
         </p>
 
     </footer>
+
+
+    <script src="js/profile.js"></script>
 
 </body>
 

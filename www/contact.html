@@ -14,8 +14,8 @@
 
     <header class="site-header">
 
-        <a href="index.html" class="site-logo">
-            Yogurt
+        <a href="index.html" class="site-logo" data-profile="fullName">
+            Yassin L. Unte
         </a>
 
         <nav class="navigation" aria-label="Main navigation">
@@ -36,7 +36,7 @@
             <div class="section-heading">
 
                 <p class="section-number">
-                    04
+                    05
                 </p>
 
                 <h1 class="page-title">
@@ -53,6 +53,19 @@
                     <p class="large-text">
                         Feel free to connect with me.
                     </p>
+
+
+                    <div class="contact-item">
+
+                        <p class="detail-label">
+                            Name
+                        </p>
+
+                        <p data-profile="fullName">
+                            Yassin L. Unte
+                        </p>
+
+                    </div>
 
 
                     <div class="contact-item">
@@ -104,8 +117,21 @@
                             Program
                         </p>
 
-                        <p>
+                        <p data-profile="course">
                             BS Information Technology
+                        </p>
+
+                    </div>
+
+
+                    <div class="contact-item">
+
+                        <p class="detail-label">
+                            Year Level
+                        </p>
+
+                        <p data-profile="yearLevel">
+                            3rd Year
                         </p>
 
                     </div>
@@ -132,14 +158,14 @@
 
                         <div class="form-group">
 
-                            <label for="name">
+                            <label for="contactName">
                                 Name
                             </label>
 
                             <input
                                 type="text"
-                                id="name"
-                                name="name"
+                                id="contactName"
+                                name="contactName"
                                 placeholder="Enter your name"
                             >
 
@@ -148,14 +174,14 @@
 
                         <div class="form-group">
 
-                            <label for="email">
+                            <label for="contactEmail">
                                 Email
                             </label>
 
                             <input
                                 type="email"
-                                id="email"
-                                name="email"
+                                id="contactEmail"
+                                name="contactEmail"
                                 placeholder="Enter your email"
                             >
 
@@ -164,13 +190,13 @@
 
                         <div class="form-group">
 
-                            <label for="message">
+                            <label for="contactMessage">
                                 Message
                             </label>
 
                             <textarea
-                                id="message"
-                                name="message"
+                                id="contactMessage"
+                                name="contactMessage"
                                 rows="6"
                                 placeholder="Enter your message"
                             ></textarea>
@@ -199,10 +225,16 @@
     <footer class="footer">
 
         <p>
-            &copy; 2026 Yassin L. Unte
+            &copy; 2026
+            <span data-profile="fullName">
+                Yassin L. Unte
+            </span>
         </p>
 
     </footer>
+
+
+    <script src="js/profile.js"></script>
 
 </body>
 

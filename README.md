@@ -2,107 +2,105 @@
 
 ## 1. Project Description
 
-This is my multi-page Student Profile application created using HTML, CSS, and Apache Cordova
+This is my multi-page Student Profile application developed using HTML, CSS, JavaScript, and Apache Cordova.
 
-The application was extended from my previous responsive Student Profile and now contains separate pages for my profile, background, skills, projects, and contact information
-
----
+The application contains separate pages for Profile, About, Skills, Projects, and Contact. Activity 5 adds profile editing, JavaScript validation, dynamic profile updates, and local data storage using `localStorage`.
 
 ## 2. Application Pages
 
 ### Profile
 
-The Profile page serves as the homepage of the application
-
-It contains my profile picture, name, short introduction, and links to the other pages
+The Profile page serves as the main page of the application. It displays my profile picture, full name, course, year level, About Me information, skills, and the Edit Profile function.
 
 ### About
 
-The About page contains information about my background, education, interests, goals, and aspirations
+The About page contains my personal background, educational history, interests, goals, and dynamically displayed profile information.
 
 ### Skills
 
-The Skills page contains the skills I have developed as an Information Technology student
-
-Each skill includes a short description
+The Skills page displays the skills saved through the Edit Profile interface. The skill cards update automatically based on the latest saved profile information.
 
 ### Projects
 
-The Projects page showcases some projects I have worked on
-
-The projects include:
-
-* Infinity Duel
-* Palette Lab
-* Pixabay Image Search
-
-Each project includes a short description, my role or contribution, technologies used, and a project link
+The Projects page contains projects I have worked on, including their descriptions, roles or contributions, technologies used, and project links.
 
 ### Contact
 
-The Contact page contains my email address, GitHub profile, university information, and program
+The Contact page contains my contact information, GitHub profile, university, program, and year level.
 
-It also includes a contact form layout
+## 3. Profile Editing
 
----
+The Profile page contains an Edit Profile function that allows profile information to be modified without manually changing the HTML source code.
 
-## 3. Navigation
+The editing interface allows the user to modify:
 
-The application uses standard HTML links to navigate between the different pages
-
-The navigation menu provides access to:
-
-* Profile
-* About
+* Profile Picture
+* Full Name
+* Course
+* Year Level
+* About Me
 * Skills
-* Projects
-* Contact
 
-The same navigation menu is available on every page so users can easily move between sections and return to the homepage
+Full Name, Course, Year Level, About Me, and Skills are the main required profile fields for Activity 5.
 
-JavaScript is not used for page navigation
+Profile picture editing was added as an additional feature.
 
----
+Selecting **Save** validates the information, stores the updated profile, updates the displayed content, and closes the editing interface.
 
-## 4. Responsive Design
+Selecting **Cancel** discards unsaved changes and keeps the previously saved profile information.
 
-The application uses CSS Grid, Flexbox, responsive units, and media queries to support different screen sizes
+## 4. JavaScript Functionality
 
-The layout is designed to work properly on:
+JavaScript is used for:
+
+* Opening and closing the Edit Profile interface
+* Handling form input
+* Validating required fields
+* Saving profile information
+* Canceling unsaved changes
+* Dynamically updating profile information
+* Updating information across multiple application pages
+* Updating the Skills page
+* Updating and previewing the profile picture
+* Retrieving saved information when the application loads
+
+The following fields cannot be empty when saving:
+
+* Full Name
+* Course
+* Year Level
+* About Me
+
+## 5. Local Data Storage
+
+The application uses `localStorage` to store and retrieve profile information.
+
+Stored information includes:
+
+* Full Name
+* Course
+* Year Level
+* About Me
+* Skills
+* Profile Picture
+
+When no saved profile exists, the application displays default profile information.
+
+When profile information is saved, JavaScript stores the data in `localStorage`. When the application is closed and reopened, the latest saved information is retrieved and displayed automatically.
+
+## 6. Responsive Design
+
+The application uses CSS Grid, Flexbox, responsive sizing, and media queries to support different screen sizes.
+
+The interface is designed for:
 
 * Desktop
 * Tablet
 * Mobile
 
-The responsive design helps prevent horizontal scrolling, overlapping elements, distorted images, and cut-off text
+The layout adjusts to prevent overlapping content, horizontal scrolling, distorted images, and unreadable text.
 
----
-
-## 5. UI/UX Principles Applied
-
-### Consistency
-
-All pages use the same color scheme, typography, navigation, spacing, and visual style
-
-### Visual Hierarchy
-
-Large headings, section numbers, spacing, and typography are used to separate important information from supporting content
-
-### Usability
-
-The navigation menu remains available on every page and the current page is visually indicated
-
-### Readability
-
-Text sizes, spacing, and content widths are adjusted to remain readable across different screen sizes
-
-### Accessibility
-
-The application uses meaningful headings, readable color contrast, alternative text for images, clear navigation links, form labels, and visible interactive elements
-
----
-
-## 6. How to Run
+## 7. How to Run
 
 Install the project dependencies:
 
@@ -116,7 +114,7 @@ Check the Cordova requirements:
 cordova requirements
 ```
 
-Build the Android project:
+Build the Android application:
 
 ```bash
 cordova build android
@@ -128,31 +126,33 @@ Run the application using an Android emulator or connected Android device:
 cordova run android
 ```
 
----
+## 8. Application Screenshots
 
-## 7. Application Screenshots
+### Student Profile
 
-### Profile
+![Student Profile 1](screenshots/student-profile-1.png)
 
-![Profile](screenshots/profile.png)
+![Student Profile 2](screenshots/student-profile-2.png)
 
-### About
+### Edit Profile
 
-![About](screenshots/about.png)
+![Edit Profile 1](screenshots/edit-profile-1.png)
 
-### Skills
+![Edit Profile 2](screenshots/edit-profile-2.png)
 
-![Skills](screenshots/skills.png)
+### Updated Profile
 
-### Projects
+![Updated Profile 1](screenshots/updated-profile-1.png)
 
-![Projects](screenshots/projects.png)
+![Updated Profile 2](screenshots/updated-profile-2.png)
 
 ### Contact
 
-![Contact](screenshots/contact.png)
+![Contact 1](screenshots/contact-1.png)
 
----
+![Contact 2](screenshots/contact-2.png)
+
+![Contact 3](screenshots/contact-3.png)
 
 ## Developer
 
