@@ -2,110 +2,239 @@
 
 ## 1. Project Description
 
-This is my multi-page Student Profile application developed using HTML, CSS, JavaScript, and Apache Cordova.
+This is my Student Profile application built using HTML, CSS, JavaScript, and Apache Cordova.
 
-The application contains separate pages for Profile, About, Skills, Projects, and Contact. Activity 5 adds profile editing, JavaScript validation, dynamic profile updates, and local data storage using `localStorage`.
+The project started as a simple student profile and was gradually expanded into a multi-page application. It currently includes Profile, About, Skills, Projects, and Contact pages.
+
+For Activity 5, I added profile editing, form validation, Save and Cancel functions, and `localStorage`.
+
+For Activity 6, I added camera integration so the user can take a new profile picture using the device camera. The captured image can replace the current profile picture and remain saved even after restarting the application.
+
+---
 
 ## 2. Application Pages
 
 ### Profile
 
-The Profile page serves as the main page of the application. It displays my profile picture, full name, course, year level, About Me information, skills, and the Edit Profile function.
+The Profile page is the main page of the application.
+
+It contains:
+
+* Profile Picture
+* Full Name
+* Course
+* Year Level
+* About Me
+* Skills
+* Edit Profile
+* Change Profile Picture
+
+The profile information can be updated without manually editing the HTML.
 
 ### About
 
-The About page contains my personal background, educational history, interests, goals, and dynamically displayed profile information.
+The About page contains my background, education, interests, and goals.
+
+Some information such as the name, course, year level, and About Me section is also loaded from the saved profile data.
 
 ### Skills
 
-The Skills page displays the skills saved through the Edit Profile interface. The skill cards update automatically based on the latest saved profile information.
+The Skills page displays the skills saved in the Student Profile.
+
+When the skills are updated through Edit Profile, the Skills page also updates automatically.
 
 ### Projects
 
-The Projects page contains projects I have worked on, including their descriptions, roles or contributions, technologies used, and project links.
+The Projects page contains some of the projects I have worked on.
+
+Each project includes its title, description, role or contribution, technologies used, and a project link.
 
 ### Contact
 
-The Contact page contains my contact information, GitHub profile, university, program, and year level.
+The Contact page contains my contact information, GitHub profile, university, course, and year level.
+
+---
 
 ## 3. Profile Editing
 
-The Profile page contains an Edit Profile function that allows profile information to be modified without manually changing the HTML source code.
+The application includes an Edit Profile function.
 
-The editing interface allows the user to modify:
-
-* Profile Picture
-* Full Name
-* Course
-* Year Level
-* About Me
-* Skills
-
-Full Name, Course, Year Level, About Me, and Skills are the main required profile fields for Activity 5.
-
-Profile picture editing was added as an additional feature.
-
-Selecting **Save** validates the information, stores the updated profile, updates the displayed content, and closes the editing interface.
-
-Selecting **Cancel** discards unsaved changes and keeps the previously saved profile information.
-
-## 4. JavaScript Functionality
-
-JavaScript is used for:
-
-* Opening and closing the Edit Profile interface
-* Handling form input
-* Validating required fields
-* Saving profile information
-* Canceling unsaved changes
-* Dynamically updating profile information
-* Updating information across multiple application pages
-* Updating the Skills page
-* Updating and previewing the profile picture
-* Retrieving saved information when the application loads
-
-The following fields cannot be empty when saving:
-
-* Full Name
-* Course
-* Year Level
-* About Me
-
-## 5. Local Data Storage
-
-The application uses `localStorage` to store and retrieve profile information.
-
-Stored information includes:
+The following information can be edited:
 
 * Full Name
 * Course
 * Year Level
 * About Me
 * Skills
-* Profile Picture
 
-When no saved profile exists, the application displays default profile information.
+When the user selects **Save**, JavaScript checks the required fields before saving the information.
 
-When profile information is saved, JavaScript stores the data in `localStorage`. When the application is closed and reopened, the latest saved information is retrieved and displayed automatically.
+The following fields cannot be empty:
 
-## 6. Responsive Design
+* Full Name
+* Course
+* Year Level
+* About Me
 
-The application uses CSS Grid, Flexbox, responsive sizing, and media queries to support different screen sizes.
+If one of these fields is empty, the application displays a validation message and prevents the profile from being saved.
 
-The interface is designed for:
+The **Cancel** button closes the editing interface without saving any of the changes.
+
+Saved profile information is stored using `localStorage`.
+
+---
+
+## 4. Camera Integration
+
+Activity 6 adds a **Change Profile Picture** function.
+
+The application uses the Cordova Camera plugin:
+
+```text
+cordova-plugin-camera
+```
+
+When the user selects **Change Profile Picture**, the application opens the device camera.
+
+The basic process is:
+
+```text
+Change Profile Picture
+→ Open Camera
+→ Capture Photo
+→ Return Photo to Application
+→ Update Profile Picture
+```
+
+The camera is accessed using JavaScript through:
+
+```javascript
+navigator.camera.getPicture()
+```
+
+The application uses the camera as the image source instead of selecting an existing image from storage.
+
+---
+
+## 5. Device Feature Integration
+
+Apache Cordova allows the JavaScript code in the application to access native device features using plugins.
+
+For the camera feature, the application waits for the Cordova `deviceready` event before using the camera API.
+
+The project uses:
+
+```text
+cordova-plugin-camera 8.0.0
+cordova-plugin-file 8.1.3
+```
+
+The Camera plugin is used to open the native camera and capture a photo.
+
+The File plugin is used to store the captured image in the application's persistent storage.
+
+The project also includes Android camera permission configuration so camera permission can be requested and handled properly.
+
+---
+
+## 6. Image Handling
+
+The camera returns the captured image as a file URI.
+
+The application then uses the Cordova File plugin to copy the captured image into the application's persistent data directory.
+
+The process is:
+
+```text
+Capture Photo
+→ Receive Image URI
+→ Copy Image to Persistent App Storage
+→ Save Image URI
+→ Display Image as Profile Picture
+```
+
+The saved image location is stored together with the profile information using `localStorage`.
+
+Because the image is copied into persistent application storage, the profile picture remains available after closing and reopening the application.
+
+The user can also take another picture at any time. The newly captured image replaces the previously displayed profile picture.
+
+---
+
+## 7. Error Handling
+
+The application handles camera cancellation and camera errors without crashing.
+
+### Camera Cancellation
+
+If the user opens the camera but cancels without taking a photo, the existing profile picture remains unchanged.
+
+The application returns to the Profile page normally.
+
+### Camera Permission Denial
+
+If camera permission is denied, the application displays a message informing the user that camera access is unavailable.
+
+Example:
+
+```text
+Unable to access the camera. Please check your camera permission.
+```
+
+### Camera and File Errors
+
+If the camera cannot be opened or the captured image cannot be stored, the application displays an error message instead of crashing.
+
+---
+
+## 8. Responsive Design
+
+The application uses CSS Grid, Flexbox, responsive sizing, and media queries.
+
+The layout supports:
 
 * Desktop
 * Tablet
 * Mobile
 
-The layout adjusts to prevent overlapping content, horizontal scrolling, distorted images, and unreadable text.
+The layout automatically adjusts depending on screen size.
 
-## 7. How to Run
+Elements such as the profile image, navigation, forms, project cards, skills, and contact information are arranged differently on smaller screens to keep the interface readable and usable.
+
+---
+
+## 9. How to Run
 
 Install the project dependencies:
 
 ```bash
 npm install
+```
+
+Check the installed Cordova plugins:
+
+```bash
+cordova plugin ls
+```
+
+The project should include:
+
+```text
+cordova-plugin-camera 8.0.0
+cordova-plugin-file 8.1.3
+```
+
+If the plugins are not installed, they can be added using:
+
+```bash
+cordova plugin add cordova-plugin-camera@8.0.0
+cordova plugin add cordova-plugin-file@8.1.3
+```
+
+Prepare the Android project:
+
+```bash
+cordova prepare android
 ```
 
 Check the Cordova requirements:
@@ -114,45 +243,59 @@ Check the Cordova requirements:
 cordova requirements
 ```
 
-Build the Android application:
+Build the application:
 
 ```bash
 cordova build android
 ```
 
-Run the application using an Android emulator or connected Android device:
+To run the application on a connected Android device, enable USB debugging first.
+
+Check if the device is detected:
 
 ```bash
-cordova run android
+adb devices
 ```
 
-## 8. Application Screenshots
+Then run:
+
+```bash
+cordova run android --device
+```
+
+When the Change Profile Picture feature is used for the first time, Android may request camera permission.
+
+Camera permission must be allowed for normal camera use.
+
+---
+
+## 10. Application Screenshots
 
 ### Student Profile
 
-![Student Profile 1](screenshots/student-profile-1.png)
+![Student Profile](screenshots_act6/activity6-student-profile.jpg)
 
-![Student Profile 2](screenshots/student-profile-2.png)
+### Change Profile Picture
 
-### Edit Profile
+![Change Profile Picture](screenshots_act6/activity6-change-profile-picture.jpg)
 
-![Edit Profile 1](screenshots/edit-profile-1.png)
+### Camera
 
-![Edit Profile 2](screenshots/edit-profile-2.png)
+![Camera](screenshots_act6/activity6-camera.jpg)
 
-### Updated Profile
+### Captured Image
 
-![Updated Profile 1](screenshots/updated-profile-1.png)
+![Captured Image](screenshots_act6/activity6-captured-image.jpg)
 
-![Updated Profile 2](screenshots/updated-profile-2.png)
+### Updated Profile Picture
 
-### Contact
+![Updated Profile Picture](screenshots_act6/activity6-updated-profile.jpg)
 
-![Contact 1](screenshots/contact-1.png)
+### Camera Error Handling
 
-![Contact 2](screenshots/contact-2.png)
+![Camera Error](screenshots_act6/activity6-camera-error.jpg)
 
-![Contact 3](screenshots/contact-3.png)
+---
 
 ## Developer
 

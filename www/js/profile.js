@@ -25,7 +25,7 @@ const skillDescriptions = {
     "Web Development": "Building responsive web pages using HTML and CSS."
 };
 
-let pendingProfileImage = null;
+let cordovaReady = false;
 
 function getProfileData() {
     const savedProfile = localStorage.getItem(STORAGE_KEY);
@@ -51,6 +51,13 @@ function getProfileData() {
     } catch {
         return defaultProfile;
     }
+}
+
+function saveProfileData(profile) {
+    localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(profile)
+    );
 }
 
 function updateProfileText(profile) {
@@ -186,72 +193,6 @@ function fillEditForm(profile) {
         profile.skills.join(", ");
 }
 
-function updateImagePreview(imageSource) {
-    const preview =
-        document.getElementById("editProfilePreview");
-
-    if (preview) {
-        preview.src = imageSource;
-    }
-}
-
-function handleProfilePicture(event) {
-    const validationMessage =
-        document.getElementById("validationMessage");
-
-    const file =
-        event.target.files[0];
-
-    if (!file) {
-        return;
-    }
-
-    const allowedTypes = [
-        "image/jpeg",
-        "image/png",
-        "image/webp"
-    ];
-
-    if (!allowedTypes.includes(file.type)) {
-        validationMessage.textContent =
-            "Please choose a JPG, PNG, or WEBP image.";
-
-        event.target.value = "";
-
-        return;
-    }
-
-    const maximumSize =
-        2 * 1024 * 1024;
-
-    if (file.size > maximumSize) {
-        validationMessage.textContent =
-            "Profile picture must be 2 MB or smaller.";
-
-        event.target.value = "";
-
-        return;
-    }
-
-    const reader =
-        new FileReader();
-
-    reader.onload =
-        function(loadEvent) {
-            pendingProfileImage =
-                loadEvent.target.result;
-
-            updateImagePreview(
-                pendingProfileImage
-            );
-
-            validationMessage.textContent =
-                "";
-        };
-
-    reader.readAsDataURL(file);
-}
-
 function openEditProfile() {
     const editProfileSection =
         document.getElementById(
@@ -263,30 +204,13 @@ function openEditProfile() {
             "validationMessage"
         );
 
-    const profilePictureInput =
-        document.getElementById(
-            "profilePicture"
-        );
-
     if (!editProfileSection) {
         return;
     }
 
-    const currentProfile =
-        getProfileData();
-
-    pendingProfileImage =
-        currentProfile.profileImage;
-
-    fillEditForm(currentProfile);
-
-    updateImagePreview(
-        currentProfile.profileImage
+    fillEditForm(
+        getProfileData()
     );
-
-    if (profilePictureInput) {
-        profilePictureInput.value = "";
-    }
 
     if (validationMessage) {
         validationMessage.textContent = "";
@@ -403,6 +327,9 @@ function saveProfile(event) {
                 return skill !== "";
             });
 
+    const currentProfile =
+        getProfileData();
+
     const updatedProfile = {
         fullName:
             document
@@ -431,52 +358,15 @@ function saveProfile(event) {
         skills: skills,
 
         profileImage:
-            pendingProfileImage ||
-            getProfileData().profileImage
+            currentProfile.profileImage
     };
 
-    try {
-        localStorage.setItem(
-            STORAGE_KEY,
-            JSON.stringify(updatedProfile)
-        );
-    } catch {
-        validationMessage.textContent =
-            "Unable to save the profile. Try using a smaller profile picture.";
+    saveProfileData(
+        updatedProfile
+    );
 
-        return;
-    }
-
-    displayProfile(updatedProfile);
-
-    closeEditProfile();
-
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-}
-
-function cancelEdit() {
-    const currentProfile =
-        getProfileData();
-
-    pendingProfileImage =
-        currentProfile.profileImage;
-
-    const profilePictureInput =
-        document.getElementById(
-            "profilePicture"
-        );
-
-    if (profilePictureInput) {
-        profilePictureInput.value = "";
-    }
-
-    fillEditForm(currentProfile);
-
-    updateImagePreview(
-        currentProfile.profileImage
+    displayProfile(
+        updatedProfile
     );
 
     closeEditProfile();
@@ -487,60 +377,333 @@ function cancelEdit() {
     });
 }
 
-document.addEventListener(
-    "DOMContentLoaded",
-    function() {
-        const profile =
-            getProfileData();
+function cancelEdit() {
+    fillEditForm(
+        getProfileData()
+    );
 
-        displayProfile(profile);
+    closeEditProfile();
 
-        const editProfileButton =
-            document.getElementById(
-                "editProfileButton"
-            );
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
 
-        const profileForm =
-            document.getElementById(
-                "profileForm"
-            );
+function setCameraMessage(message, isError) {
+    const cameraMessage =
+        document.getElementById(
+            "cameraMessage"
+        );
 
-        const cancelButton =
-            document.getElementById(
-                "cancelButton"
-            );
-
-        const profilePictureInput =
-            document.getElementById(
-                "profilePicture"
-            );
-
-        if (editProfileButton) {
-            editProfileButton.addEventListener(
-                "click",
-                openEditProfile
-            );
-        }
-
-        if (profileForm) {
-            profileForm.addEventListener(
-                "submit",
-                saveProfile
-            );
-        }
-
-        if (cancelButton) {
-            cancelButton.addEventListener(
-                "click",
-                cancelEdit
-            );
-        }
-
-        if (profilePictureInput) {
-            profilePictureInput.addEventListener(
-                "change",
-                handleProfilePicture
-            );
-        }
+    if (!cameraMessage) {
+        return;
     }
+
+    cameraMessage.textContent =
+        message;
+
+    if (isError) {
+        cameraMessage.classList.add(
+            "camera-error"
+        );
+    } else {
+        cameraMessage.classList.remove(
+            "camera-error"
+        );
+    }
+}
+
+function setCameraButtonBusy(isBusy) {
+    const button =
+        document.getElementById(
+            "changeProfilePictureButton"
+        );
+
+    if (!button) {
+        return;
+    }
+
+    button.disabled =
+        isBusy;
+
+    button.textContent =
+        isBusy
+            ? "Opening Camera..."
+            : "Change Profile Picture";
+}
+
+function isCameraCancellation(message) {
+    const text =
+        String(message || "")
+            .toLowerCase();
+
+    return (
+        text.includes("cancel") ||
+        text.includes("no image selected") ||
+        text.includes("no image")
+    );
+}
+
+function cameraError(message) {
+    setCameraButtonBusy(false);
+
+    if (isCameraCancellation(message)) {
+        setCameraMessage(
+            "Camera cancelled. Your current profile picture was kept.",
+            false
+        );
+
+        return;
+    }
+
+    const errorText =
+        String(message || "")
+            .toLowerCase();
+
+    if (
+        errorText === "20" ||
+        errorText.includes("permission") ||
+        errorText.includes("denied")
+    ) {
+        setCameraMessage(
+            "Unable to access the camera. Please check your camera permission.",
+            true
+        );
+
+        return;
+    }
+
+    setCameraMessage(
+        "Unable to access the camera. Please try again.",
+        true
+    );
+}
+
+function fileError() {
+    setCameraButtonBusy(false);
+
+    setCameraMessage(
+        "The photo was captured, but the application could not save it.",
+        true
+    );
+}
+
+function saveCapturedImage(imageUri) {
+    if (
+        typeof window.resolveLocalFileSystemURL !==
+        "function"
+    ) {
+        fileError();
+        return;
+    }
+
+    if (
+        typeof cordova === "undefined" ||
+        !cordova.file ||
+        !cordova.file.dataDirectory
+    ) {
+        fileError();
+        return;
+    }
+
+    window.resolveLocalFileSystemURL(
+        imageUri,
+
+        function(fileEntry) {
+            window.resolveLocalFileSystemURL(
+                cordova.file.dataDirectory,
+
+                function(dataDirectoryEntry) {
+                    const fileName =
+                        "profile-picture-" +
+                        Date.now() +
+                        ".jpg";
+
+                    fileEntry.copyTo(
+                        dataDirectoryEntry,
+                        fileName,
+
+                        function(copiedEntry) {
+                            const persistentImageUri =
+                                copiedEntry.toURL();
+
+                            const profile =
+                                getProfileData();
+
+                            profile.profileImage =
+                                persistentImageUri;
+
+                            saveProfileData(
+                                profile
+                            );
+
+                            updateProfileImages(
+                                profile
+                            );
+
+                            setCameraButtonBusy(
+                                false
+                            );
+
+                            setCameraMessage(
+                                "Profile picture updated successfully.",
+                                false
+                            );
+                        },
+
+                        fileError
+                    );
+                },
+
+                fileError
+            );
+        },
+
+        fileError
+    );
+}
+
+function cameraSuccess(imageUri) {
+    saveCapturedImage(
+        imageUri
+    );
+}
+
+function openCamera() {
+    setCameraMessage(
+        "",
+        false
+    );
+
+    if (!cordovaReady) {
+        setCameraMessage(
+            "Camera is still initializing. Please try again.",
+            true
+        );
+
+        return;
+    }
+
+    if (
+        !navigator.camera ||
+        typeof Camera === "undefined"
+    ) {
+        setCameraMessage(
+            "Camera feature is unavailable on this device.",
+            true
+        );
+
+        return;
+    }
+
+    setCameraButtonBusy(
+        true
+    );
+
+    navigator.camera.getPicture(
+        cameraSuccess,
+        cameraError,
+        {
+            quality: 70,
+            destinationType:
+                Camera.DestinationType.FILE_URI,
+            sourceType:
+                Camera.PictureSourceType.CAMERA,
+            encodingType:
+                Camera.EncodingType.JPEG,
+            mediaType:
+                Camera.MediaType.PICTURE,
+            cameraDirection:
+                Camera.Direction.FRONT,
+            correctOrientation: true,
+            targetWidth: 1200,
+            targetHeight: 1200,
+            saveToPhotoAlbum: false
+        }
+    );
+}
+
+function initializePage() {
+    const profile =
+        getProfileData();
+
+    displayProfile(
+        profile
+    );
+
+    const editProfileButton =
+        document.getElementById(
+            "editProfileButton"
+        );
+
+    const profileForm =
+        document.getElementById(
+            "profileForm"
+        );
+
+    const cancelButton =
+        document.getElementById(
+            "cancelButton"
+        );
+
+    const cameraButton =
+        document.getElementById(
+            "changeProfilePictureButton"
+        );
+
+    if (editProfileButton) {
+        editProfileButton.addEventListener(
+            "click",
+            openEditProfile
+        );
+    }
+
+    if (profileForm) {
+        profileForm.addEventListener(
+            "submit",
+            saveProfile
+        );
+    }
+
+    if (cancelButton) {
+        cancelButton.addEventListener(
+            "click",
+            cancelEdit
+        );
+    }
+
+    if (cameraButton) {
+        cameraButton.addEventListener(
+            "click",
+            openCamera
+        );
+    }
+}
+
+function onDeviceReady() {
+    cordovaReady = true;
+
+    setCameraMessage(
+        "",
+        false
+    );
+}
+
+if (
+    document.readyState ===
+    "loading"
+) {
+    document.addEventListener(
+        "DOMContentLoaded",
+        initializePage
+    );
+} else {
+    initializePage();
+}
+
+document.addEventListener(
+    "deviceready",
+    onDeviceReady,
+    false
 );

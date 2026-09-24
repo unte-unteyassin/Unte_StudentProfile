@@ -218,6 +218,45 @@ a {
     object-position: center;
 }
 
+.camera-button {
+    width: 100%;
+    min-height: 48px;
+    margin-top: 18px;
+    padding: 13px 18px;
+    border: 1px solid #181818;
+    background: #181818;
+    color: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.camera-button:hover {
+    background: transparent;
+    color: #181818;
+}
+
+.camera-button:disabled {
+    cursor: not-allowed;
+    opacity: 0.55;
+}
+
+.camera-message {
+    min-height: 24px;
+    margin-top: 12px;
+    color: #575650;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.camera-message.camera-error {
+    color: #8f1d1d;
+    font-weight: 700;
+}
+
 .edit-profile-button {
     min-height: 44px;
     display: inline-flex;
@@ -259,14 +298,6 @@ a {
     background: #f1f0eb;
 }
 
-.edit-profile-preview {
-    width: 150px;
-    height: 180px;
-    margin-bottom: 18px;
-    border: 1px solid #c9c8c3;
-    object-fit: cover;
-}
-
 .form-group {
     margin-bottom: 24px;
 }
@@ -289,10 +320,6 @@ a {
     color: #181818;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 15px;
-}
-
-.form-group input[type="file"] {
-    padding: 12px;
 }
 
 .form-group textarea {
@@ -538,7 +565,7 @@ a {
 
 .project-card {
     display: grid;
-    grid-template-columns: 100px 1fr;
+    grid-template-columns: 120px 1fr;
     gap: 40px;
     padding: 55px 0;
     border-bottom: 1px solid #d4d3ce;
@@ -546,8 +573,9 @@ a {
 
 .project-number {
     color: #777671;
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 18px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
 }
 
 .project-content h2 {
@@ -765,6 +793,10 @@ a {
         height: min(110vw, 460px);
     }
 
+    .camera-button {
+        width: 100%;
+    }
+
     .edit-profile-container {
         margin-top: 70px;
         padding-top: 50px;
@@ -772,11 +804,6 @@ a {
 
     .edit-profile-card {
         padding: 25px 20px;
-    }
-
-    .edit-profile-preview {
-        width: 120px;
-        height: 145px;
     }
 
     .form-actions {
