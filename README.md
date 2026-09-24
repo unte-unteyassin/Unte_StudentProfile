@@ -1,14 +1,7 @@
 # Unte_StudentProfile
 
 ## 1. Project Description
-
-This is my Student Profile application built using HTML, CSS, JavaScript, and Apache Cordova.
-
-The project started as a simple student profile and was gradually expanded into a multi-page application. It currently includes Profile, About, Skills, Projects, and Contact pages.
-
-For Activity 5, I added profile editing, form validation, Save and Cancel functions, and `localStorage`.
-
-For Activity 6, I added camera integration so the user can take a new profile picture using the device camera. The captured image can replace the current profile picture and remain saved even after restarting the application.
+This is about Activity 6, as I have added camera integration so the user can take a new profile picture using the device camera. The captured image can replace the current profile picture and remain saved even after restarting the application.
 
 ---
 
